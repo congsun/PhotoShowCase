@@ -84,7 +84,14 @@
 - (IBAction)moreButtonTapped:(id)sender {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"More" message:@"" preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *saveToCameraRollAction = [UIAlertAction actionWithTitle:@"Save to Camera Roll" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        UIImageWriteToSavedPhotosAlbum(self.photoObject.originImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+        if (self.photoObject.originImage) {
+            UIImageWriteToSavedPhotosAlbum(self.photoObject.originImage, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
+        }else{
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Wait..." message:@"Please Wait For the Finish of the Download" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
+            [alertController addAction:okAction];
+            [self presentViewController:alertController animated:YES completion:nil];
+        }
     }];
     [alertController addAction:saveToCameraRollAction];
     UIAlertAction *shareAction = [UIAlertAction actionWithTitle:@"Share" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
