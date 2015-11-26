@@ -84,7 +84,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xI8-Sd-BpG">
-                                <rect key="frame" x="0.0" y="70" width="600" height="480"/>
+                                <rect key="frame" x="3" y="70" width="594" height="480"/>
                                 <animations/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mcu-bO-h5e">
@@ -111,7 +111,7 @@
                         <constraints>
                             <constraint firstItem="mcu-bO-h5e" firstAttribute="top" secondItem="VH1-NW-Yr0" secondAttribute="bottom" constant="8" id="63n-9w-ru7"/>
                             <constraint firstItem="FdF-mv-aYl" firstAttribute="top" secondItem="AME-fc-qMp" secondAttribute="bottom" constant="8" id="7Wd-4Z-M0E"/>
-                            <constraint firstItem="xI8-Sd-BpG" firstAttribute="width" secondItem="ti9-Gt-SSO" secondAttribute="width" id="88O-ao-ojX"/>
+                            <constraint firstItem="xI8-Sd-BpG" firstAttribute="width" secondItem="ti9-Gt-SSO" secondAttribute="width" constant="-6" id="88O-ao-ojX"/>
                             <constraint firstItem="AME-fc-qMp" firstAttribute="centerX" secondItem="ti9-Gt-SSO" secondAttribute="centerX" id="DNO-IQ-afW"/>
                             <constraint firstItem="xI8-Sd-BpG" firstAttribute="centerX" secondItem="ti9-Gt-SSO" secondAttribute="centerX" id="Kcw-2O-xI4"/>
                             <constraint firstItem="AME-fc-qMp" firstAttribute="width" secondItem="ti9-Gt-SSO" secondAttribute="width" multiplier="0.9" id="Rtj-De-zG3"/>

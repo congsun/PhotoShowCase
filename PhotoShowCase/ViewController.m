@@ -72,7 +72,7 @@
                 ((PhotoObject *)self.photoAlbum.photoObjectArray[indexPath.row]).thumbImage = image;
                 PhotoCollectionCell *cellToUpdate = (PhotoCollectionCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
                 if(cellToUpdate){
-                    cell.imageView.image = image;
+                    cellToUpdate.imageView.image = image;
                 }
             }
         }];
@@ -92,20 +92,5 @@
     PhotoObject *object = self.photoAlbum.photoObjectArray[indexPath.row];
     return object.thumbImageHeight/object.thumbImageWidth*width;
 }
-
-
-//
-//-(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-//    return 24;
-//}
-//
-//-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-//    return CGSizeMake(150, 150);
-//}
-//
-//-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-//    return UIEdgeInsetsMake(8, 24, 8, 24);
-//}
-//
 
 @end
