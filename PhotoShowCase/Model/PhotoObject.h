@@ -14,6 +14,8 @@
 @property (strong, nonatomic) NSString *credit;
 @property (strong, nonatomic) NSURL *thumbImageUrl;
 @property (strong, nonatomic) NSURL *originImageUrl;
+@property (assign, nonatomic) CGFloat thumbImageHeight;
+@property (assign, nonatomic) CGFloat thumbImageWidth;
 
 @property (strong, nonatomic) UIImage *thumbImage;
 @property (strong, nonatomic) UIImage *originImage;
@@ -21,5 +23,7 @@
 -(instancetype)initWithCaptain:(NSString *)captain
                         Credit:(NSString *)credit
                  ThumbImageUrl:(NSURL *)thunbImageUrl
-                OriginImageUrl:(NSURL *)originImageUrl;
+                OriginImageUrl:(NSURL *)originImageUrl
+              ThumbImageHeight:(CGFloat)thumbImageHeight
+            AndThumbImageWidth:(CGFloat)thumbImageWidth;
 @end

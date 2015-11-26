@@ -10,20 +10,27 @@
 
 @implementation PhotoObject
 
--(instancetype)initWithCaptain:(NSString *)captain Credit:(NSString *)credit ThumbImageUrl:(NSURL *)thunbImageUrl OriginImageUrl:(NSURL *)originImageUrl {
+-(instancetype)initWithCaptain:(NSString *)captain
+                        Credit:(NSString *)credit
+                 ThumbImageUrl:(NSURL *)thunbImageUrl
+                OriginImageUrl:(NSURL *)originImageUrl
+              ThumbImageHeight:(CGFloat)thumbImageHeight
+            AndThumbImageWidth:(CGFloat)thumbImageWidth {
     self = [super init];
     if(self){
         _captain = captain;
         _credit = credit;
         _thumbImageUrl = thunbImageUrl;
         _originImageUrl = originImageUrl;
+        _thumbImageHeight = thumbImageHeight;
+        _thumbImageWidth = thumbImageWidth;
     }
     return self;
 }
 
 
 -(instancetype)init {
-    return [self initWithCaptain:@"" Credit:@"" ThumbImageUrl:[NSURL URLWithString:@""] OriginImageUrl:[NSURL URLWithString:@""]];
+    return [self initWithCaptain:@"" Credit:@"" ThumbImageUrl:[NSURL URLWithString:@""] OriginImageUrl:[NSURL URLWithString:@""] ThumbImageHeight:0.0 AndThumbImageWidth:0.0];
 }
 
 

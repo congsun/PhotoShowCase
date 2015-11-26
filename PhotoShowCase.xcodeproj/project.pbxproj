@@ -19,6 +19,7 @@
 		3DCA1DAD1C05651600D5A8AB /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCA1DAC1C05651600D5A8AB /* Constants.m */; };
 		3DCA1DB91C057E6C00D5A8AB /* PhotoCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCA1DB81C057E6C00D5A8AB /* PhotoCollectionCell.m */; };
 		3DE4C79F1C061EF4007BF104 /* SingleImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE4C79E1C061EF4007BF104 /* SingleImageViewController.m */; };
+		3DE4C7A21C064468007BF104 /* NewCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE4C7A11C064468007BF104 /* NewCollectionViewLayout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,8 @@
 		3DCA1DB81C057E6C00D5A8AB /* PhotoCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoCollectionCell.m; path = View/PhotoCollectionCell.m; sourceTree = "<group>"; };
 		3DE4C79D1C061EF4007BF104 /* SingleImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SingleImageViewController.h; path = Controller/SingleImageViewController.h; sourceTree = "<group>"; };
 		3DE4C79E1C061EF4007BF104 /* SingleImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SingleImageViewController.m; path = Controller/SingleImageViewController.m; sourceTree = "<group>"; };
+		3DE4C7A01C064468007BF104 /* NewCollectionViewLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NewCollectionViewLayout.h; path = View/NewCollectionViewLayout.h; sourceTree = "<group>"; };
+		3DE4C7A11C064468007BF104 /* NewCollectionViewLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NewCollectionViewLayout.m; path = View/NewCollectionViewLayout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +140,8 @@
 			children = (
 				3DCA1DB71C057E6C00D5A8AB /* PhotoCollectionCell.h */,
 				3DCA1DB81C057E6C00D5A8AB /* PhotoCollectionCell.m */,
+				3DE4C7A01C064468007BF104 /* NewCollectionViewLayout.h */,
+				3DE4C7A11C064468007BF104 /* NewCollectionViewLayout.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -214,6 +219,7 @@
 				3DCA1DA61C0560F100D5A8AB /* PhotoAlbum.m in Sources */,
 				3DCA1DB91C057E6C00D5A8AB /* PhotoCollectionCell.m in Sources */,
 				3DCA1DAA1C05641200D5A8AB /* APIClient.m in Sources */,
+				3DE4C7A21C064468007BF104 /* NewCollectionViewLayout.m in Sources */,
 				3DCA1D901C055CA900D5A8AB /* ViewController.m in Sources */,
 				3DCA1DA31C055E2E00D5A8AB /* PhotoObject.m in Sources */,
 				3DCA1D8D1C055CA900D5A8AB /* AppDelegate.m in Sources */,

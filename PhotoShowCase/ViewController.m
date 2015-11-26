@@ -12,8 +12,9 @@
 #import "PhotoAlbum.h"
 #import "PhotoObject.h"
 #import "SingleImageViewController.h"
+#import "NewCollectionViewLayout.h"
 
-@interface ViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
+@interface ViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,NewCollectionViewLayoutDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (strong, nonatomic) PhotoAlbum *photoAlbum;
 @end
@@ -22,14 +23,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    NewCollectionViewLayout *layout = [[NewCollectionViewLayout alloc]init];
+    layout.delegate = self;
+    self.collectionView.collectionViewLayout = layout;
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     [APIClient getPhotoAlbumWithCompletion:^(BOOL isSuccess, PhotoAlbum *photoAlbum) {
         if(isSuccess){
             self.photoAlbum = photoAlbum;
+            self.navigationItem.title = photoAlbum.title;
             [self.collectionView reloadData];
         }
     }];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont fontWithName:@"Avenir Book" size:17]};
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,20 +88,24 @@
     [self presentViewController:destVC animated:YES completion:nil];
 }
 
-//-(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-//    
+-(CGFloat) collectionView:(UICollectionView *)collectionView HeightForPhotoAtIndexPath:(NSIndexPath *)indexPath ForWidth:(CGFloat)width{
+    PhotoObject *object = self.photoAlbum.photoObjectArray[indexPath.row];
+    return object.thumbImageHeight/object.thumbImageWidth*width;
+}
+
+
+//
+//-(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
+//    return 24;
 //}
-
--(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section{
-    return 24;
-}
-
--(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake(150, 150);
-}
-
--(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(8, 24, 8, 24);
-}
+//
+//-(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+//    return CGSizeMake(150, 150);
+//}
+//
+//-(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+//    return UIEdgeInsetsMake(8, 24, 8, 24);
+//}
+//
 
 @end

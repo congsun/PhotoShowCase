@@ -39,7 +39,11 @@
                     NSString *smallImageUrlString = metaData[@"smallbasename"];
                     NSURL *thumbImageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",baseImageUrlString,smallImageUrlString]];
                     NSURL *originImageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",baseImageUrlString,originImageUrlString]];
-                    PhotoObject *photoObject = [[PhotoObject alloc]initWithCaptain:captain Credit:credit ThumbImageUrl:thumbImageUrl OriginImageUrl:originImageUrl];
+                    NSString *thumbImageHeightString = metaData[@"simageheight"];
+                    NSString *thumbImageWidthString = metaData[@"simagewidth"];
+                    CGFloat thumbImageHeight = [thumbImageHeightString floatValue];
+                    CGFloat thumbImageWidth = [thumbImageWidthString floatValue];
+                    PhotoObject *photoObject = [[PhotoObject alloc]initWithCaptain:captain Credit:credit ThumbImageUrl:thumbImageUrl OriginImageUrl:originImageUrl ThumbImageHeight:thumbImageHeight AndThumbImageWidth:thumbImageWidth];
                     [resultArray addObject:photoObject];
                 }
                 PhotoAlbum *album = [[PhotoAlbum alloc]initWithTitle:title PhotoObjectArray:resultArray];
