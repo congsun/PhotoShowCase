@@ -30,7 +30,7 @@
 
 
 -(instancetype)init {
-    return [self initWithCaptain:@"" Credit:@"" ThumbImageUrl:[NSURL URLWithString:@""] OriginImageUrl:[NSURL URLWithString:@""] ThumbImageHeight:0.0 AndThumbImageWidth:0.0];
+    return [self initWithCaptain:@"" Credit:@"" ThumbImageUrl:nil OriginImageUrl:nil ThumbImageHeight:0.0 AndThumbImageWidth:0.0];
 }
 
 

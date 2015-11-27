@@ -72,6 +72,7 @@
     [self presentViewController:destVC animated:YES completion:nil];
 }
 
+#pragma mark <NewCollectionViewLayoutDelegate>
 -(CGFloat) collectionView:(UICollectionView *)collectionView HeightForPhotoAtIndexPath:(NSIndexPath*)indexPath ForWidth:(CGFloat)width{
     PhotoObject *object = self.photoAlbum.photoObjectArray[indexPath.row];
     return object.thumbImageHeight/object.thumbImageWidth*width;
