@@ -10,9 +10,9 @@
 		3D2F824C1C081FDD00EC4971 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2F824B1C081FDD00EC4971 /* RootViewController.m */; };
 		3D2F824F1C08214200EC4971 /* AlbumCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2F824E1C08214200EC4971 /* AlbumCollectionViewCell.m */; };
 		3D2F82521C08223D00EC4971 /* AlbumViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2F82511C08223D00EC4971 /* AlbumViewModel.m */; };
+		3D2F82551C0830A300EC4971 /* PhotoArrayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2F82541C0830A300EC4971 /* PhotoArrayViewController.m */; };
 		3DCA1D8A1C055CA900D5A8AB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCA1D891C055CA900D5A8AB /* main.m */; };
 		3DCA1D8D1C055CA900D5A8AB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCA1D8C1C055CA900D5A8AB /* AppDelegate.m */; };
-		3DCA1D901C055CA900D5A8AB /* PhotoArrayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DCA1D8F1C055CA900D5A8AB /* PhotoArrayViewController.m */; };
 		3DCA1D931C055CA900D5A8AB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DCA1D911C055CA900D5A8AB /* Main.storyboard */; };
 		3DCA1D951C055CA900D5A8AB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DCA1D941C055CA900D5A8AB /* Assets.xcassets */; };
 		3DCA1D981C055CA900D5A8AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DCA1D961C055CA900D5A8AB /* LaunchScreen.storyboard */; };
@@ -32,12 +32,12 @@
 		3D2F824E1C08214200EC4971 /* AlbumCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlbumCollectionViewCell.m; path = View/AlbumCollectionViewCell.m; sourceTree = "<group>"; };
 		3D2F82501C08223D00EC4971 /* AlbumViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AlbumViewModel.h; path = Model/AlbumViewModel.h; sourceTree = "<group>"; };
 		3D2F82511C08223D00EC4971 /* AlbumViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AlbumViewModel.m; path = Model/AlbumViewModel.m; sourceTree = "<group>"; };
+		3D2F82531C0830A300EC4971 /* PhotoArrayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoArrayViewController.h; path = Controller/PhotoArrayViewController.h; sourceTree = "<group>"; };
+		3D2F82541C0830A300EC4971 /* PhotoArrayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoArrayViewController.m; path = Controller/PhotoArrayViewController.m; sourceTree = "<group>"; };
 		3DCA1D851C055CA900D5A8AB /* PhotoShowCase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoShowCase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3DCA1D891C055CA900D5A8AB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3DCA1D8B1C055CA900D5A8AB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3DCA1D8C1C055CA900D5A8AB /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		3DCA1D8E1C055CA900D5A8AB /* PhotoArrayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoArrayViewController.h; sourceTree = "<group>"; };
-		3DCA1D8F1C055CA900D5A8AB /* PhotoArrayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoArrayViewController.m; sourceTree = "<group>"; };
 		3DCA1D921C055CA900D5A8AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3DCA1D941C055CA900D5A8AB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3DCA1D971C055CA900D5A8AB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -138,8 +138,8 @@
 		3DCA1DB51C057E3100D5A8AB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				3DCA1D8E1C055CA900D5A8AB /* PhotoArrayViewController.h */,
-				3DCA1D8F1C055CA900D5A8AB /* PhotoArrayViewController.m */,
+				3D2F82531C0830A300EC4971 /* PhotoArrayViewController.h */,
+				3D2F82541C0830A300EC4971 /* PhotoArrayViewController.m */,
 				3DE4C79D1C061EF4007BF104 /* SingleImageViewController.h */,
 				3DE4C79E1C061EF4007BF104 /* SingleImageViewController.m */,
 				3D2F824A1C081FDD00EC4971 /* RootViewController.h */,
@@ -238,11 +238,11 @@
 				3D2F824C1C081FDD00EC4971 /* RootViewController.m in Sources */,
 				3DCA1DAA1C05641200D5A8AB /* APIClient.m in Sources */,
 				3DE4C7A21C064468007BF104 /* NewCollectionViewLayout.m in Sources */,
-				3DCA1D901C055CA900D5A8AB /* PhotoArrayViewController.m in Sources */,
 				3DCA1DA31C055E2E00D5A8AB /* PhotoObject.m in Sources */,
 				3DCA1D8D1C055CA900D5A8AB /* AppDelegate.m in Sources */,
 				3DCA1DAD1C05651600D5A8AB /* Constants.m in Sources */,
 				3DE4C79F1C061EF4007BF104 /* SingleImageViewController.m in Sources */,
+				3D2F82551C0830A300EC4971 /* PhotoArrayViewController.m in Sources */,
 				3DCA1D8A1C055CA900D5A8AB /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
