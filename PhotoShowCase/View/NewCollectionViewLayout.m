@@ -35,19 +35,33 @@
         CGFloat photoWidth = (self.contentWidth-3*cellPadding)/2;
         CGFloat cellWidth = photoWidth + 2*cellPadding;
         NSMutableArray *cellHeightArray = [[NSMutableArray alloc]init];
-        for(int i = 0; i<[self.collectionView numberOfItemsInSection:0];i++){
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-            CGFloat photoHeight = [self.delegate collectionView:self.collectionView HeightForPhotoAtIndexPath:indexPath ForWidth:photoWidth];
-            CGFloat cellHeight = photoHeight+2*cellPadding;
-            [cellHeightArray addObject:@(cellHeight)];
-            CGFloat cellXOffset = i%2==0? 0:cellWidth-cellPadding;
-            CGFloat cellYOffset = i>1? ((UICollectionViewLayoutAttributes *)self.attributeCache[i-2]).frame.size.height+((UICollectionViewLayoutAttributes *)self.attributeCache[i-2]).frame.origin.y:0;
-            CGRect cellFrame = CGRectMake(cellXOffset, cellYOffset, cellWidth, cellHeight);
-            CGRect insetCellFrame = CGRectInset(cellFrame, cellPadding, cellPadding);
-            UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
-            attributes.frame = insetCellFrame;
-            [self.attributeCache addObject:attributes];
+        CGFloat sectionYOffset = 0;
+        for(int section = 0; section<self.collectionView.numberOfSections;section++){
+            NSMutableArray *attributeCacheOfSectionArray = [[NSMutableArray alloc]init];
+            for(int i = 0; i<[self.collectionView numberOfItemsInSection:section];i++){
+                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:section];
+                CGFloat photoHeight = [self.delegate collectionView:self.collectionView HeightForPhotoAtIndexPath:indexPath ForWidth:photoWidth];
+                CGFloat cellHeight = photoHeight+2*cellPadding;
+                [cellHeightArray addObject:@(cellHeight)];
+                CGFloat cellXOffset = i%2==0? 0:cellWidth-cellPadding;
+                CGFloat cellYOffset = i>1? ((UICollectionViewLayoutAttributes *)(attributeCacheOfSectionArray[i-2])).frame.size.height+((UICollectionViewLayoutAttributes *)(attributeCacheOfSectionArray[i-2])).frame.origin.y:sectionYOffset;
+                CGRect cellFrame = CGRectMake(cellXOffset, cellYOffset, cellWidth, cellHeight);
+                CGRect insetCellFrame = CGRectInset(cellFrame, cellPadding, cellPadding);
+                UICollectionViewLayoutAttributes *attributes = [UICollectionViewLayoutAttributes layoutAttributesForCellWithIndexPath:indexPath];
+                attributes.frame = insetCellFrame;
+                [attributeCacheOfSectionArray addObject:attributes];
+                if(i == [self.collectionView numberOfItemsInSection:section]-1){
+                    if(i/2!=0&&i>0){
+                        UICollectionViewLayoutAttributes *attributes = attributeCacheOfSectionArray[i-1];
+                        sectionYOffset = MAX(cellYOffset+cellHeight, attributes.frame.size.height+attributes.frame.origin.y)+[self.delegate collectionView:self.collectionView HeightForHeaderAtSection:section];
+                    }else{
+                        sectionYOffset = cellYOffset+cellHeight+[self.delegate collectionView:self.collectionView HeightForHeaderAtSection:section];
+                    }
+                }
+            }
+            [self.attributeCache addObject:attributeCacheOfSectionArray];
         }
+        
         CGFloat totalHeightLeft = 0;
         CGFloat totalHeightRight = 0;
         for(int i = 0; i<cellHeightArray.count/2*2;i+=2){
@@ -65,13 +79,20 @@
     return CGSizeMake(self.contentWidth, self.contentHeight);
 }
 
+-(UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath{
+    NSArray *attributeCacheOfSectionArray = self.attributeCache[indexPath.section];
+    return attributeCacheOfSectionArray[indexPath.row];
+    
+}
+
 -(NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect{
     NSMutableArray *layoutAttributesArray = [[NSMutableArray alloc]init];
-    for (UICollectionViewLayoutAttributes *attributes in self.attributeCache){
-        if(CGRectIntersectsRect(attributes.frame, rect)){
-            [layoutAttributesArray addObject:attributes];
+    for(NSArray *sectionAttributesArray in self.attributeCache){
+        for (UICollectionViewLayoutAttributes *attributes in sectionAttributesArray){
+            if(CGRectIntersectsRect(attributes.frame, rect)){
+                [layoutAttributesArray addObject:attributes];
+            }
         }
-        
     }
     return layoutAttributesArray;
 }

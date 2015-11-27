@@ -16,7 +16,7 @@
 
 @interface ViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,NewCollectionViewLayoutDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (strong, nonatomic) PhotoAlbum *photoAlbum;
+@property (strong, nonatomic) NSArray *photoAlbumArray;
 @end
 
 @implementation ViewController
@@ -28,10 +28,16 @@
     self.collectionView.collectionViewLayout = layout;
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    [APIClient getPhotoAlbumWithCompletion:^(BOOL isSuccess, PhotoAlbum *photoAlbum) {
+    
+    [APIClient getPhotoAlbumWithCompletion:^(BOOL isSuccess, NSArray *photoAlbumArray) {
         if(isSuccess){
-            self.photoAlbum = photoAlbum;
-            self.navigationItem.title = photoAlbum.title;
+            PhotoAlbum *album = photoAlbumArray[0];
+            NSMutableArray *array = photoAlbumArray.mutableCopy;
+            [array addObject:album];
+            self.photoAlbumArray = array;
+            
+//            self.photoAlbumArray = photoAlbumArray;
+            self.navigationItem.title = @"Photo Show Case";
             [self.collectionView reloadData];
         }
     }];
@@ -43,6 +49,7 @@
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont fontWithName:@"Avenir Book" size:17]};
 }
 
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -53,23 +60,30 @@
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 1;
+    return self.photoAlbumArray.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.photoAlbum.photoObjectArray.count;
+    if(self.photoAlbumArray !=nil){
+       return ((PhotoAlbum *)(self.photoAlbumArray[section])).photoObjectArray.count;
+    }else{
+        return 0;
+    }
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     PhotoCollectionCell *cell = (PhotoCollectionCell *)[self.collectionView dequeueReusableCellWithReuseIdentifier:@"photoCell" forIndexPath:indexPath];
-    PhotoObject *photoObject = self.photoAlbum.photoObjectArray[indexPath.row];
+    PhotoAlbum *photoAlbum = self.photoAlbumArray[indexPath.section];
+    PhotoObject *photoObject = photoAlbum.photoObjectArray[indexPath.row];
     cell.imageView.image = nil;
     if(photoObject.thumbImage){
         cell.imageView.image = photoObject.thumbImage;
     }else{
         [APIClient getImageWithUrl:photoObject.thumbImageUrl WithCompletion:^(BOOL isSuccess, UIImage *image) {
             if (isSuccess) {
-                ((PhotoObject *)self.photoAlbum.photoObjectArray[indexPath.row]).thumbImage = image;
+                PhotoAlbum *photoAlbum = self.photoAlbumArray[indexPath.section];
+                PhotoObject *photoObject = photoAlbum.photoObjectArray[indexPath.row];
+                photoObject.thumbImage = image;
                 PhotoCollectionCell *cellToUpdate = (PhotoCollectionCell *)[self.collectionView cellForItemAtIndexPath:indexPath];
                 if(cellToUpdate){
                     cellToUpdate.imageView.image = image;
@@ -84,13 +98,19 @@
     [self.collectionView deselectItemAtIndexPath:indexPath animated:YES];
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
     SingleImageViewController *destVC = [storyboard instantiateViewControllerWithIdentifier:@"singleImageVC"];
-    destVC.photoObject = self.photoAlbum.photoObjectArray[indexPath.row];
+    PhotoAlbum *photoAlbum = self.photoAlbumArray[indexPath.section];
+    destVC.photoObject = photoAlbum.photoObjectArray[indexPath.row];
     [self presentViewController:destVC animated:YES completion:nil];
 }
 
--(CGFloat) collectionView:(UICollectionView *)collectionView HeightForPhotoAtIndexPath:(NSIndexPath *)indexPath ForWidth:(CGFloat)width{
-    PhotoObject *object = self.photoAlbum.photoObjectArray[indexPath.row];
+-(CGFloat) collectionView:(UICollectionView *)collectionView HeightForPhotoAtIndexPath:(NSIndexPath*)indexPath ForWidth:(CGFloat)width{
+    PhotoAlbum *photoAlbum = self.photoAlbumArray[indexPath.section];
+    PhotoObject *object = photoAlbum.photoObjectArray[indexPath.row];
     return object.thumbImageHeight/object.thumbImageWidth*width;
+}
+
+-(CGFloat) collectionView:(UICollectionView *)collectionView HeightForHeaderAtSection:(NSUInteger)section{
+    return 20;
 }
 
 @end

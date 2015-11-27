@@ -13,7 +13,7 @@
 
 @implementation APIClient
 
-+(void)getPhotoAlbumWithUrl:(NSURL *)url AndCompletion:(void(^)(BOOL isSuccess,PhotoAlbum *photoAlbum))completionBlock{
++(void)getPhotoAlbumWithUrl:(NSURL *)url AndCompletion:(void(^)(BOOL isSuccess,NSArray *photoAlbumArray))completionBlock{
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLSessionTask *task = [session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (error) {
@@ -26,29 +26,32 @@
             NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
             if (jsonResponse) {
                 NSArray *responseArray = jsonResponse[@"albums"];
-                NSDictionary *responseDict = responseArray[0];
-                NSString *title = responseDict[@"title"];
-                NSArray *photoDicArray = responseDict[@"slides"];
-                NSMutableArray *resultArray = [[NSMutableArray alloc]init];
-                for (NSDictionary *photoDic in photoDicArray) {
-                    NSDictionary *metaData = ((NSDictionary *)photoDic[@"metaData"])[@"items"];
-                    NSString *captain = metaData[@"caption"];
-                    NSString *credit = metaData[@"credit"];
-                    NSString *baseImageUrlString = metaData[@"publishurl"];
-                    NSString *originImageUrlString = metaData[@"basename"];
-                    NSString *smallImageUrlString = metaData[@"smallbasename"];
-                    NSURL *thumbImageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",baseImageUrlString,smallImageUrlString]];
-                    NSURL *originImageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",baseImageUrlString,originImageUrlString]];
-                    NSString *thumbImageHeightString = metaData[@"simageheight"];
-                    NSString *thumbImageWidthString = metaData[@"simagewidth"];
-                    CGFloat thumbImageHeight = [thumbImageHeightString floatValue];
-                    CGFloat thumbImageWidth = [thumbImageWidthString floatValue];
-                    PhotoObject *photoObject = [[PhotoObject alloc]initWithCaptain:captain Credit:credit ThumbImageUrl:thumbImageUrl OriginImageUrl:originImageUrl ThumbImageHeight:thumbImageHeight AndThumbImageWidth:thumbImageWidth];
-                    [resultArray addObject:photoObject];
+                NSMutableArray *albumArray = [[NSMutableArray alloc]init];
+                for(NSDictionary *responseDict in responseArray){
+                    NSString *title = responseDict[@"title"];
+                    NSArray *photoDicArray = responseDict[@"slides"];
+                    NSMutableArray *resultArray = [[NSMutableArray alloc]init];
+                    for (NSDictionary *photoDic in photoDicArray) {
+                        NSDictionary *metaData = ((NSDictionary *)photoDic[@"metaData"])[@"items"];
+                        NSString *captain = metaData[@"caption"];
+                        NSString *credit = metaData[@"credit"];
+                        NSString *baseImageUrlString = metaData[@"publishurl"];
+                        NSString *originImageUrlString = metaData[@"basename"];
+                        NSString *smallImageUrlString = metaData[@"smallbasename"];
+                        NSURL *thumbImageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",baseImageUrlString,smallImageUrlString]];
+                        NSURL *originImageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@",baseImageUrlString,originImageUrlString]];
+                        NSString *thumbImageHeightString = metaData[@"simageheight"];
+                        NSString *thumbImageWidthString = metaData[@"simagewidth"];
+                        CGFloat thumbImageHeight = [thumbImageHeightString floatValue];
+                        CGFloat thumbImageWidth = [thumbImageWidthString floatValue];
+                        PhotoObject *photoObject = [[PhotoObject alloc]initWithCaptain:captain Credit:credit ThumbImageUrl:thumbImageUrl OriginImageUrl:originImageUrl ThumbImageHeight:thumbImageHeight AndThumbImageWidth:thumbImageWidth];
+                        [resultArray addObject:photoObject];
+                    }
+                    PhotoAlbum *album = [[PhotoAlbum alloc]initWithTitle:title PhotoObjectArray:resultArray];
+                    [albumArray addObject:album];
                 }
-                PhotoAlbum *album = [[PhotoAlbum alloc]initWithTitle:title PhotoObjectArray:resultArray];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    completionBlock(YES,album);
+                    completionBlock(YES,albumArray);
                 });
             }else{
                 NSLog(@"Failure! Error: %@",jsonError);
@@ -61,10 +64,10 @@
     [task resume];
 }
 
-+(void)getPhotoAlbumWithCompletion:(void (^)(BOOL isSuccess,PhotoAlbum *photoAlbum))completionBlock{
++(void)getPhotoAlbumWithCompletion:(void (^)(BOOL isSuccess,NSArray *photoAlbumArray))completionBlock{
     NSURL *url = [NSURL URLWithString:kPHOTOALBUMURL];
-    [APIClient getPhotoAlbumWithUrl:url AndCompletion:^(BOOL isSuccess, PhotoAlbum *photoAlbum) {
-        completionBlock(isSuccess,photoAlbum);
+    [APIClient getPhotoAlbumWithUrl:url AndCompletion:^(BOOL isSuccess, NSArray *photoAlbumArray) {
+        completionBlock(isSuccess,photoAlbumArray);
     }];
 }
 

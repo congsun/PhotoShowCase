@@ -12,7 +12,7 @@
 
 @interface APIClient : NSObject
 
-+(void)getPhotoAlbumWithCompletion:(void (^)(BOOL isSuccess,PhotoAlbum *photoAlbum))completionBlock;
++(void)getPhotoAlbumWithCompletion:(void (^)(BOOL isSuccess,NSArray *photoAlbum))completionBlock;
 
 +(void)getImageWithUrl:(NSURL *)url WithCompletion:(void(^)(BOOL isSuccess,UIImage *image))completionBlock;
 
