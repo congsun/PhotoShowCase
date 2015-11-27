@@ -10,9 +10,9 @@
 
 @protocol NewCollectionViewLayoutDelegate <NSObject>
 -(CGFloat) collectionView:(UICollectionView *)collectionView HeightForPhotoAtIndexPath:(NSIndexPath *)indexPath ForWidth:(CGFloat)width;
--(CGFloat) collectionView:(UICollectionView *)collectionView HeightForHeaderAtSection:(NSUInteger)section;
 @end
 
 @interface NewCollectionViewLayout : UICollectionViewLayout
 @property (weak, nonatomic) id<NewCollectionViewLayoutDelegate> delegate;
+@property (assign, nonatomic) CGFloat heightForHeader;
 @end

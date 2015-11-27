@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+@class PhotoAlbum;
 
-@interface ViewController : UIViewController
-
-
+@interface PhotoArrayViewController : UIViewController
+@property (strong, nonatomic) PhotoAlbum *photoAlbum;
 @end
 

@@ -53,9 +53,9 @@
                 if(i == [self.collectionView numberOfItemsInSection:section]-1){
                     if(i/2!=0&&i>0){
                         UICollectionViewLayoutAttributes *attributes = attributeCacheOfSectionArray[i-1];
-                        sectionYOffset = MAX(cellYOffset+cellHeight, attributes.frame.size.height+attributes.frame.origin.y)+[self.delegate collectionView:self.collectionView HeightForHeaderAtSection:section];
+                        sectionYOffset = MAX(cellYOffset+cellHeight, attributes.frame.size.height+attributes.frame.origin.y)+self.heightForHeader;
                     }else{
-                        sectionYOffset = cellYOffset+cellHeight+[self.delegate collectionView:self.collectionView HeightForHeaderAtSection:section];
+                        sectionYOffset = cellYOffset+cellHeight+self.heightForHeader;
                     }
                 }
             }
