@@ -40,32 +40,32 @@
                                                     <rect key="frame" x="0.0" y="8" width="236" height="173"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IkZ-Ra-v7g" userLabel="botImageView">
-                                                            <rect key="frame" x="0.0" y="0.0" width="236" height="173"/>
+                                                            <rect key="frame" x="4" y="4" width="228" height="165"/>
                                                             <animations/>
                                                         </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Bm6-JC-zRt" userLabel="midImageView">
-                                                            <rect key="frame" x="0.0" y="0.0" width="236" height="173"/>
+                                                            <rect key="frame" x="2" y="2" width="228" height="165"/>
                                                             <animations/>
                                                         </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IlQ-uH-zT4" userLabel="topImageView">
-                                                            <rect key="frame" x="0.0" y="0.0" width="236" height="173"/>
+                                                            <rect key="frame" x="0.0" y="8" width="228" height="165"/>
                                                             <animations/>
                                                         </imageView>
                                                     </subviews>
                                                     <animations/>
                                                     <constraints>
-                                                        <constraint firstItem="IkZ-Ra-v7g" firstAttribute="width" secondItem="MQE-4G-ejW" secondAttribute="width" id="0cM-11-eUX"/>
-                                                        <constraint firstItem="Bm6-JC-zRt" firstAttribute="centerX" secondItem="MQE-4G-ejW" secondAttribute="centerX" id="728-Ko-RP6"/>
-                                                        <constraint firstItem="Bm6-JC-zRt" firstAttribute="centerY" secondItem="MQE-4G-ejW" secondAttribute="centerY" id="7sU-h0-yua"/>
+                                                        <constraint firstItem="IkZ-Ra-v7g" firstAttribute="width" secondItem="MQE-4G-ejW" secondAttribute="width" constant="-8" id="0cM-11-eUX"/>
+                                                        <constraint firstItem="Bm6-JC-zRt" firstAttribute="centerX" secondItem="MQE-4G-ejW" secondAttribute="centerX" constant="-2" id="728-Ko-RP6"/>
+                                                        <constraint firstItem="Bm6-JC-zRt" firstAttribute="centerY" secondItem="MQE-4G-ejW" secondAttribute="centerY" constant="-2" id="7sU-h0-yua"/>
                                                         <constraint firstItem="IkZ-Ra-v7g" firstAttribute="centerX" secondItem="MQE-4G-ejW" secondAttribute="centerX" id="Gte-Vt-xoG"/>
-                                                        <constraint firstItem="Bm6-JC-zRt" firstAttribute="height" secondItem="MQE-4G-ejW" secondAttribute="height" id="OtX-ju-9dL"/>
-                                                        <constraint firstItem="IlQ-uH-zT4" firstAttribute="height" secondItem="MQE-4G-ejW" secondAttribute="height" id="REq-Ag-LYG"/>
+                                                        <constraint firstItem="Bm6-JC-zRt" firstAttribute="height" secondItem="MQE-4G-ejW" secondAttribute="height" constant="-8" id="OtX-ju-9dL"/>
+                                                        <constraint firstItem="IlQ-uH-zT4" firstAttribute="height" secondItem="MQE-4G-ejW" secondAttribute="height" constant="-8" id="REq-Ag-LYG"/>
                                                         <constraint firstItem="IkZ-Ra-v7g" firstAttribute="centerY" secondItem="MQE-4G-ejW" secondAttribute="centerY" id="VaV-Nf-SR2"/>
-                                                        <constraint firstItem="IlQ-uH-zT4" firstAttribute="centerX" secondItem="MQE-4G-ejW" secondAttribute="centerX" id="XPC-5T-eDS"/>
-                                                        <constraint firstItem="IkZ-Ra-v7g" firstAttribute="height" secondItem="MQE-4G-ejW" secondAttribute="height" id="aBr-gn-pjZ"/>
-                                                        <constraint firstItem="Bm6-JC-zRt" firstAttribute="width" secondItem="MQE-4G-ejW" secondAttribute="width" id="gVt-o1-3Xy"/>
-                                                        <constraint firstItem="IlQ-uH-zT4" firstAttribute="centerY" secondItem="MQE-4G-ejW" secondAttribute="centerY" id="nIm-3N-WXi"/>
-                                                        <constraint firstItem="IlQ-uH-zT4" firstAttribute="width" secondItem="MQE-4G-ejW" secondAttribute="width" id="yId-yj-1y9"/>
+                                                        <constraint firstItem="IlQ-uH-zT4" firstAttribute="centerX" secondItem="MQE-4G-ejW" secondAttribute="centerX" constant="-4" id="XPC-5T-eDS"/>
+                                                        <constraint firstItem="IkZ-Ra-v7g" firstAttribute="height" secondItem="MQE-4G-ejW" secondAttribute="height" constant="-8" id="aBr-gn-pjZ"/>
+                                                        <constraint firstItem="Bm6-JC-zRt" firstAttribute="width" secondItem="MQE-4G-ejW" secondAttribute="width" constant="-8" id="gVt-o1-3Xy"/>
+                                                        <constraint firstItem="IlQ-uH-zT4" firstAttribute="centerY" secondItem="MQE-4G-ejW" secondAttribute="centerY" constant="4" id="nIm-3N-WXi"/>
+                                                        <constraint firstItem="IlQ-uH-zT4" firstAttribute="width" secondItem="MQE-4G-ejW" secondAttribute="width" constant="-8" id="yId-yj-1y9"/>
                                                     </constraints>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="Zv2-bQ-Eai" userLabel="titleLabel">

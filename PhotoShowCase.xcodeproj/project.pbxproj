@@ -94,7 +94,6 @@
 				3DCA1D9F1C055E0600D5A8AB /* Model */,
 				3DCA1D8B1C055CA900D5A8AB /* AppDelegate.h */,
 				3DCA1D8C1C055CA900D5A8AB /* AppDelegate.m */,
-				3DCA1D911C055CA900D5A8AB /* Main.storyboard */,
 				3DCA1D941C055CA900D5A8AB /* Assets.xcassets */,
 				3DCA1D961C055CA900D5A8AB /* LaunchScreen.storyboard */,
 				3DCA1D991C055CA900D5A8AB /* Info.plist */,
@@ -151,6 +150,7 @@
 		3DCA1DB61C057E5300D5A8AB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3DCA1D911C055CA900D5A8AB /* Main.storyboard */,
 				3DCA1DB71C057E6C00D5A8AB /* PhotoCollectionCell.h */,
 				3DCA1DB81C057E6C00D5A8AB /* PhotoCollectionCell.m */,
 				3DE4C7A01C064468007BF104 /* NewCollectionViewLayout.h */,

@@ -2,7 +2,7 @@
 //  RootViewController.m
 //  PhotoShowCase
 //
-//  Created by Cong Sun on 11/27/15.
+//  Created by Cong Sun on 11/26/15.
 //  Copyright © 2015 Cong Sun. All rights reserved.
 //
 
@@ -30,10 +30,11 @@
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont fontWithName:@"Avenir Book" size:17]};
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    
     [APIClient getPhotoAlbumWithCompletion:^(BOOL isSuccess, NSArray *photoAlbumArray) {
         if(isSuccess){
             self.photoAlbumArray = photoAlbumArray;
-            self.navigationItem.title = @"Photo Show Case";
+            self.navigationItem.title = @"Photo Showcase";
             [self.collectionView reloadData];
         }
     }];
@@ -46,6 +47,7 @@
         AlbumViewModel *albumViewModel = [[AlbumViewModel alloc]initWithPhotoAlbum:album];
         [self.albumViewModelArray addObject:albumViewModel];
     }
+    [self.collectionView reloadData];
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle{

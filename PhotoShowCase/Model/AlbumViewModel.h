@@ -2,7 +2,7 @@
 //  AlbumViewModel.h
 //  PhotoShowCase
 //
-//  Created by Cong Sun on 11/27/15.
+//  Created by Cong Sun on 11/26/15.
 //  Copyright © 2015 Cong Sun. All rights reserved.
 //
 
